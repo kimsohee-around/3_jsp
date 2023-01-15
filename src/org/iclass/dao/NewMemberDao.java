@@ -13,6 +13,44 @@ import jdbc.util.OracleUtil;
 
 public class NewMemberDao {
 	
+	public int update(NewMember member) throws SQLException {
+		Connection conn = OracleUtil.getConnection();
+		String sql = "UPDATE new_member \r\n"
+				+ "SET email = ?, hobbies = ? \r\n"
+				+ "WHERE id = ?";
+	
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, member.getEmail());
+		pstmt.setString(2, member.getHobbies());
+		pstmt.setString(3, member.getId());
+		
+		return pstmt.executeUpdate();
+	}
+	
+		
+	public NewMember selectById(String id) throws SQLException {
+		Connection conn = OracleUtil.getConnection();
+		String sql ="select * from new_member where id = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		NewMember member = null;
+		if(rs.next()) {
+			return NewMember.builder()
+						.id(rs.getString(1))
+						.name(rs.getString(2))
+						.email(rs.getString(4))
+						.age(rs.getInt(5))
+						.gender(rs.getString(6))
+						.hobbies(rs.getString(7))
+						.joinDate2(rs.getTimestamp(8))   // 필드 형식에 맞춰 변경
+						.build();
+		}
+		
+		return member;
+		
+	}
+	
 	public List<NewMember> selectAll() throws SQLException {
 		Connection conn = OracleUtil.getConnection();
 		String sql ="select * from new_member";
@@ -27,7 +65,7 @@ public class NewMemberDao {
 						.age(rs.getInt(5))
 						.gender(rs.getString(6))
 						.hobbies(rs.getString(7))
-						.joinDate2(rs.getDate(8))
+						.joinDate2(rs.getTimestamp(8))
 						.build()
 					);
 		}

@@ -1,3 +1,7 @@
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="org.iclass.dao.NewMemberDao"%>
@@ -7,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>회원 목록</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -34,18 +38,30 @@
 		NewMember temp = list.get(i);
 %>      
       <tr>
-        <td><%= temp.getId() %></td>
+<%--         <td><%= temp.getId() %></td> --%>        
+		<td><a href="update.jsp?id=<%= temp.getId() %>"><%= temp.getId() %></a></td>
+		<!-- a 태그 : 요청 url은 update.jsp , 파라미터 id -->
         <td><%= temp.getName() %></td>
         <td><%= temp.getEmail() %></td>
         <td><%= temp.getAge() %></td>
         <td><%= temp.getGender() %></td>
         <td><%= temp.getHobbies() %></td>
-        <td><%= temp.getJoinDate2() %></td>
+        <td><%= temp.getJoinDate2() %> ,
+        <%
+        	//날짜형식을 원하는 형식으로 변경하기        	
+        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        	String joind = sdf.format(temp.getJoinDate2());
+        	out.print(joind);
+        	out.print(",");
+        	out.print(temp.timestampToLocalDateTime());
+        %>
+        </td>
       </tr>
 <%
 	}
 %>     
   </table>
+  <button type="button" onclick="location.href='/jsp'">HOME</button>
 </div>
 
 </body>

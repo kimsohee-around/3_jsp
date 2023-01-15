@@ -58,3 +58,6 @@ input,select {
     border-radius: 6px;
     border: 1px solid gray;
 }
+input[readonly],input[disabled] {
+	background-color: #eee;
+}

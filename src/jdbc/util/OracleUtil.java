@@ -13,8 +13,8 @@ public class OracleUtil {
 		Connection conn = null;
 		String url = "jdbc:oracle:thin:@localhost:1521:XE";
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String user = "iclass10";
-		String password ="1234";
+		String user = "c##idev";
+		String password ="1111";
 		
 		try {
 			Class.forName(driver);
