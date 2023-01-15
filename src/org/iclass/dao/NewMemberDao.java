@@ -27,7 +27,13 @@ public class NewMemberDao {
 		return pstmt.executeUpdate();
 	}
 	
+	public int delete(String id) throws SQLException {
+		Connection conn = OracleUtil.getConnection();
 		
+		
+		return 0;   //pstmt.executeUpdate();
+	}
+	
 	public NewMember selectById(String id) throws SQLException {
 		Connection conn = OracleUtil.getConnection();
 		String sql ="select * from new_member where id = ?";

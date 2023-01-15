@@ -27,6 +27,7 @@
 <h3>회원 수정</h3>
 <!-- 수정가능한 정보 : email , 취미 -->
 <form action="updateAction.jsp" method="POST">
+<input type="hidden" name="extra"> <!-- 회원탈퇴시에 사용 -->
 <table>
 	<tr>
 		<td>
@@ -125,6 +126,7 @@
 			<!-- form 태그 안에 있을 때는 type=submit 생략됨.  -->
 			<button type="reset" >다시쓰기</button>
 				<button type="button" onclick="location.href='list.jsp'">회원목록</button>
+			<button type="button" id="delete">회원 탈퇴</button>
 		</td>
 	</tr>
 </table>
@@ -146,7 +148,16 @@
 			
 		});
 
-		
+		document.querySelector("#delete").addEventListener('click',()=>{
+			const frm = document.forms[0]
+			const id = frm.id.value
+			const yn = confirm(id + "님 😪  정말로 회원 탈퇴를 하십니까??")
+			if (yn) {
+				frm.extra.value='yes'
+				frm.submit()
+			}
+			
+		})
 
 </script>
 <%
