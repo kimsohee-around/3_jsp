@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>jsp</display-name>
+  <!-- 인덱스 페이지, 메인 페이지 -->
+  <welcome-file-list>
+    <welcome-file>main.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+   
+</web-app>
+<!-- web.xml 은 서블릿 컨테이너 톰캣이 애플리케이션 실행과
+	관련된 설정을 하는 파일.톰캣 설정 외에 추가 또는 변경을 작성. 
+	welcome-file-list 태그는 context (프로그램 이름)으로
+	url 이 요청될 때 기본으로 보이는 웹페이지 지정
+-->
