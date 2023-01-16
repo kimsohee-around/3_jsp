@@ -13,7 +13,6 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-WebContent/WEB-INF/lib
 
 
 # External tool builders
@@ -121,3 +120,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/d
+/build/

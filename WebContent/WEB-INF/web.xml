@@ -14,6 +14,6 @@
 </web-app>
 <!-- web.xml 은 서블릿 컨테이너 톰캣이 애플리케이션 실행과
 	관련된 설정을 하는 파일.톰캣 설정 외에 추가 또는 변경을 작성. 
-	welcome-file-list 태그는 context (프로그램 이름)으로
+	welcome-file-list 태그는 context path(프로그램 이름)으로
 	url 이 요청될 때 기본으로 보이는 웹페이지 지정
 -->
