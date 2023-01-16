@@ -13,14 +13,14 @@
 	NewMember vo=null;
     NewMemberDao dao =null;
 	String id = request.getParameter("id");
-	if(id == null )
+	if(id == null )		//id라는 이름의 파라미터가 없을때
 		response.sendRedirect("../fail.jsp");
 	else {	
 	 dao = new NewMemberDao();
 	 vo = dao.selectById(id);
 	}
 	
-	if(vo == null) 
+	if(vo == null) 	//id 파라미터 값으로 조회한 결과가 null 일때
 		response.sendRedirect("../fail.jsp");
 	else {	
 %>
