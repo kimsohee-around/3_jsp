@@ -11,16 +11,11 @@
 <body>
 <%
 	NewMember vo=null;
-    NewMemberDao dao =null;
 	String id = request.getParameter("id");
-	if(id == null )
-		response.sendRedirect("../fail.jsp");
-	else {	
-	 dao = new NewMemberDao();
-	 vo = dao.selectById(id);
-	}
+	NewMemberDao dao = new NewMemberDao();
+	vo = dao.selectById(id);
 	
-	if(vo == null) 
+	if(id==null || vo == null) 
 		response.sendRedirect("../fail.jsp");
 	else {	
 %>
@@ -34,7 +29,8 @@
 			<label for="lblUid">아이디</label>
 		</td>
 		<td>
-		<input type="text" id="lblUid" name="id" value="<%=vo.getId() %>" readonly>  <!-- disabled="disabled" 로 하면 파라미터 전달이 안됩니다. -->
+		<input type="text" id="lblUid" name="id" value="<%=vo.getId() %>" readonly>  
+		<!-- readonly 는 편집은 안되고 파라미터 전달은 됩니다. -->
 		</td>
 	</tr>
 	<tr>
@@ -43,6 +39,7 @@
 		</td>
 		<td>
 		<input type="text" id="lblName" name="name" value="<%=vo.getName() %>" disabled="disabled">
+		<!-- disabled="disabled" 로 하면 파라미터 전달이 안됩니다. -->
 		</td>
 	</tr>
 <!-- 	<tr>
@@ -125,7 +122,7 @@
 			<button>수정하기</button>  
 			<!-- form 태그 안에 있을 때는 type=submit 생략됨.  -->
 			<button type="reset" >다시쓰기</button>
-				<button type="button" onclick="location.href='list.jsp'">회원목록</button>
+			<button type="button" onclick="location.href='list.jsp'">회원목록</button>
 			<button type="button" id="delete">회원 탈퇴</button>
 		</td>
 	</tr>
@@ -137,12 +134,12 @@
 		const hobbies = document.querySelector("#hobbies").value
 		
 		document.querySelectorAll("input[name='gender']").forEach(radioItem => {
-			  if(radioItem.value == gender) radioItem.checked = 'checked'
+			  if(radioItem.value == gender) radioItem.checked = 'checked'  //true
 			
 		});
 		
 		document.querySelectorAll("input[name='hobby']").forEach(checkItem => {
-			if(hobbies.includes(checkItem.value)) checkItem.checked ='checked'
+			if(hobbies.includes(checkItem.value)) checkItem.checked ='checked'   //true
 			else
 				checkItem.checked = false
 			
@@ -156,9 +153,7 @@
 				frm.extra.value='yes'
 				frm.submit()
 			}
-			
 		})
-
 </script>
 <%
 	}

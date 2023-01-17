@@ -29,19 +29,21 @@ public class NewMemberDao {
 	
 	public int delete(String id) throws SQLException {
 		Connection conn = OracleUtil.getConnection();
-		
-		
-		return 0;   //pstmt.executeUpdate();
+		String sql ="DELETE FROM new_member  "
+				+ "where id = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		return pstmt.executeUpdate();
 	}
 	
 	public NewMember selectById(String id) throws SQLException {
 		Connection conn = OracleUtil.getConnection();
-		String sql ="select * from new_member where id = ?";
+		String sql ="select * from new_member where id = ?";   //id는 PK -> 1개 행 조회
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
 		ResultSet rs = pstmt.executeQuery();
 		NewMember member = null;
-		if(rs.next()) {
+		if(rs.next()) {		//조회 결과가 있다면 객체 생성
 			return NewMember.builder()
 						.id(rs.getString(1))
 						.name(rs.getString(2))

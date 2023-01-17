@@ -62,6 +62,7 @@
 %>     
   </table>
   <button type="button" onclick="location.href='/jsp'">HOME</button>
+  <strong>id를 클릭하면 회원정보를 수정 또는 탈퇴 할 수 있습니다.</strong>
 </div>
 
 </body>
